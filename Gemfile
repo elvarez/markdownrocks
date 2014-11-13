@@ -26,6 +26,9 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 # Redcarpet for markdown
 gem 'redcarpet'
 
+# Simple form
+gem 'simple_form'
+
 # haml
 gem 'haml-rails'
 
