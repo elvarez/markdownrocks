@@ -1,0 +1,24 @@
+:javascript
+  var ready;
+  ready = function() {
+  var editor = new EpicEditor().load();
+  };
+  $(document).ready(ready);
+  $(document).on('page:load', ready);
+
+
+%h1
+  
+  Edit Wiki
+
+%div{:class => "container"}
+  %div{:class => "sixteen columns"}
+  %div{:class => "six columns offset-by-five"}
+    .newiki
+      = simple_form_for(@wiki) do |f|
+        .form-group
+          = f.input :title
+          = f.label :body
+          = f.input :body, input_html: {id: "wiki-input"}, as: :hidden
+          #epiceditor
+          = f.button :submit
