@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   resources :wikis
 
+  resources :users, only: [:update]
+
 
   
 end

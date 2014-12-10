@@ -1,10 +1,10 @@
 
 [x]    As a user, I want to sign up for a free account by providing a user name, password and email.
 [x]    As a user, I want to be able to sign in and out of Bloccipedia.
-[]    As a user with a standard (free) account, I want create, read, update, and delete public wikis which anyone can view.
+[x]    As a user with a standard (free) account, I want create, read, update, and delete public wikis which anyone can view.
+[x]    As a user, I want to edit wikis using Markdown syntax.
 []    User accounts should have one of three roles: admin, standard (free), or premium.
-[]    As a developer, I want the development database to be automatically seeded with users and wikis.
 []    As a user I want upgrade my account from a free plan to a paid (premium) plan.
 []    As a user with a premium account, I want to create private wikis which require a Blocipedia account and proper authorization to view.
-[]    As a user, I want to edit wikis using Markdown syntax.
 []    As a user with a premium account, I want to add and remove collaborators to my private wikis.
+[]    As a developer, I want the development database to be automatically seeded with users and wikis.

@@ -32,6 +32,9 @@ gem 'simple_form'
 # devise
 gem 'devise'
 
+# pundit for auth
+gem 'pundit'
+
 # haml
 gem 'haml-rails'
 
