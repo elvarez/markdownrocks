@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:update]
 
-  get 'users/upgrade'
+  get 'users/upgrade', to: 'users#upgrade', as: 'user_upgrade'
 
   
 end

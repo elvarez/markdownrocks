@@ -10,14 +10,20 @@ class UsersController < ApplicationController
     end
   end
 
+  def upgrade
+    stripe_card_token = params[:user][:stripe_card_token]
+    if customer = Stripe::Customer.create(description: email, plan: role, card: stripe_card_token)
+      current_user.update(role: 'premium', stripe_customer_token: customer.id)
+      redirect_to root_path, notice: 'Upgraded'
+    else
+      ...
+    end
+  end
+
   private
 
   def user_params
     params.require(:user).permit(:role)
-  end
-
-  def upgrade
-    
   end
   
 end

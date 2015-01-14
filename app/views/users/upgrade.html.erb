@@ -1,4 +1,4 @@
-<%= simple_form_for(current_user, html: { id: :upgrade_user }) do |f| %>
+<%= simple_form_for current_user, url: user_upgrade_path do |f| %>
   <%= f.input :role, :collection => ["standard", "premium"] %>
 
 <%= f.hidden_field :stripe_card_token %>
