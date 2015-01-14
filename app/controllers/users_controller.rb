@@ -1,4 +1,4 @@
-class Userscontroller < ApplicationController
+class UsersController < ApplicationController
 
   def update
     if current_user.update_attributes(user_params)
@@ -15,4 +15,9 @@ class Userscontroller < ApplicationController
   def user_params
     params.require(:user).permit(:role)
   end
+
+  def upgrade
+    
+  end
+  
 end
