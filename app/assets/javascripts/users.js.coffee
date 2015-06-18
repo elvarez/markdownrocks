@@ -21,6 +21,8 @@ subscription =
     Stripe.createToken(card, subscription.handleStripeResponse)
   
   handleStripeResponse: (status, response) ->
+    console.log status
+    console.log response
     if status == 200
       $('#user_stripe_card_token').val(response.id)
       $('#upgrade_user')[0].submit()

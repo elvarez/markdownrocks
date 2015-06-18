@@ -1,9 +1,55 @@
+<script>
+$(document).ready(function() {
+  var subscription;
+
+  jQuery(function() {
+    Stripe.setPublishableKey($('meta[name="stripe-key"]').attr('content'));
+    return subscription.setupForm();
+  });
+
+  subscription = {
+    setupForm: function() {
+      return $('#upgrade_user').submit(function() {
+        $('input[type=submit]').attr('disabled', true);
+        if ($('#card_number').length) {
+          subscription.processCard();
+          return false;
+        } else {
+          return true;
+        }
+      });
+    },
+    processCard: function() {
+      var card;
+      card = {
+        number: $('#card_number').val(),
+        cvc: $('#card_code').val(),
+        expMonth: $('#card_month').val(),
+        expYear: $('#card_year').val()
+      };
+      return Stripe.createToken(card, subscription.handleStripeResponse);
+    },
+    handleStripeResponse: function(status, response) {
+      console.log(status);
+      console.log(response);
+      if (status === 200) {
+        $('#user_stripe_card_token').val(response.id);
+        return $('#upgrade_user')[0].submit();
+      } else {
+        $('#stripe_error').text(response.error.message);
+        return $('input[type=submit]').attr('disabled', false);
+      }
+    }
+  };
+})
+</script>
+
 <%= simple_form_for(current_user, url: user_upgrade_path, html: { id: "upgrade_user" }) do |f| %>
   <%= f.input :role, :collection => ["standard", "premium"] %>
 
 <%= f.hidden_field :stripe_card_token %>
 
-<% if current_user.stripe_card_token.present? %>
+<% if current_user.stripe_customer_token.present? %>
 
   Credit card has been provided.
 
