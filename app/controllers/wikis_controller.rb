@@ -1,7 +1,7 @@
 class WikisController < ApplicationController
 
   def index
-    @wikis = Wiki.all
+    @wikis = policy_scope(Wiki)
   end
 
   def show
@@ -10,10 +10,13 @@ class WikisController < ApplicationController
 
   def new
     @wiki = Wiki.new
+    authorize @wiki
   end
 
   def create
     @wiki = Wiki.new(wiki_params)
+    @wiki.user_id = current_user.id
+    authorize @wiki
     if @wiki.save
       notice = "created!"
       redirect_to @wiki
@@ -24,14 +27,13 @@ class WikisController < ApplicationController
   end
 
   def edit
-
     @wiki = Wiki.find(params[:id])
-    
+    authorize @wiki
   end
 
   def update
-
     @wiki = Wiki.find(params[:id])
+    authorize @wiki
     if @wiki.update_attributes(params.require(:wiki).permit(:title, :body))
       notice = "Updated!"
       redirect_to @wiki
@@ -43,7 +45,7 @@ class WikisController < ApplicationController
 
   def destroy
     @wiki = Wiki.find(params[:id])
-
+    authorize @wiki
     if @wiki.destroy
       notice = "destroyed!"
       redirect_to wikis_path
@@ -55,7 +57,7 @@ class WikisController < ApplicationController
   end
 
   def wiki_params
-    params.require(:wiki).permit(:title, :body)
+    params.require(:wiki).permit(:title, :body, :private)
   end
   
 end

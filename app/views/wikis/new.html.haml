@@ -18,6 +18,9 @@
       = simple_form_for(@wiki) do |f|
         .form-group
           = f.input :title
+          - if current_user.admin? || current_user.premium?
+            = f.check_box :private
+            private?
           = f.label :body
           = f.input :body, input_html: {id: "wiki-input"}, as: :hidden
           #epiceditor

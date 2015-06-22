@@ -1,0 +1,4 @@
+class AddPrivateToWikis < ActiveRecord::Migration
+  def change
+  end
+end

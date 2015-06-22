@@ -8,4 +8,16 @@ class User < ActiveRecord::Base
 
   attr_accessor :stripe_card_token
 
+  def admin?
+    role == 'admin'
+  end
+
+  def premium?
+    role == 'premium'
+  end
+
+  def owns?(thing)
+    true if self.id == thing.user_id
+  end
+
 end
