@@ -1,11 +1,11 @@
 :javascript
   var ready;
   ready = function() {
-  var editor = new EpicEditor().load();
+    var editor = new EpicEditor().load();   
   };
-  $(document).ready(ready);
-  $(document).on('page:load', ready);
 
+  $(document).ready(ready);
+  $(document).on('page:load', ready);  
 
 %h1
   
@@ -22,6 +22,6 @@
             = f.check_box :private
             private?
           = f.label :body
-          = f.input :body, input_html: {id: "wiki-input"}, as: :hidden
+          = f.input :body, input_html: {id: "wiki-input"}
           #epiceditor
           = f.button :submit

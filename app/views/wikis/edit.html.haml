@@ -1,11 +1,10 @@
 :javascript
   var ready;
   ready = function() {
-  var editor = new EpicEditor().load();
+    var editor = new EpicEditor().load();
   };
   $(document).ready(ready);
   $(document).on('page:load', ready);
-
 
 %h1
   
@@ -18,17 +17,18 @@
       = simple_form_for(@wiki) do |f|
         .form-group
           = f.input :title
-          - if current_user.admin? || current_user.premium?
+          - if current_user.admin? || @wiki.user == current_user && current_user.premium?
             = f.check_box :private
             private?
           = f.label :body
           = f.input :body, input_html: {id: "wiki-input"}, as: :hidden
           #epiceditor
           = f.button :submit
-      = @wiki.collaborators.each do |c|
-        = link_to @users.find(c.user_id).name, c, method: :delete
-      = simple_form_for(@collaborator) do |f|
-        .form-group
-          =text_field_tag :user_name
-          =f.input :wiki_id, input_html: {value: @wiki.id}, as: :hidden
-          =f.button :submit 
+      - if current_user.admin? || @wiki.user == current_user && current_user.premium?
+        = @wiki.collaborators.each do |c|
+          = link_to @users.find(c.user_id).name, c, method: :delete
+        = simple_form_for(@collaborator) do |f|
+          .form-group
+            =text_field_tag :user_name
+            =f.input :wiki_id, input_html: {value: @wiki.id}, as: :hidden
+            =f.button :submit 
