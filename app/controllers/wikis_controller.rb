@@ -18,16 +18,18 @@ class WikisController < ApplicationController
     @wiki.user_id = current_user.id
     authorize @wiki
     if @wiki.save
-      notice = "created!"
+      flash[:notice] = "created!"
       redirect_to @wiki
     else
-      notice = "error creating"
+      flash[:notice] = "error creating"
       render 'index'
     end
   end
 
   def edit
+    @users = User.all
     @wiki = Wiki.find(params[:id])
+    @collaborator = Collaborator.new
     authorize @wiki
   end
 
@@ -35,10 +37,10 @@ class WikisController < ApplicationController
     @wiki = Wiki.find(params[:id])
     authorize @wiki
     if @wiki.update_attributes(params.require(:wiki).permit(:title, :body))
-      notice = "Updated!"
+      flash[:notice] = "Updated!"
       redirect_to @wiki
     else
-      alert = "error saving the post"
+      flash[:error] = "error saving the post"
       render :edit
     end
   end
@@ -47,10 +49,10 @@ class WikisController < ApplicationController
     @wiki = Wiki.find(params[:id])
     authorize @wiki
     if @wiki.destroy
-      notice = "destroyed!"
+      flash[:notice] = "destroyed!"
       redirect_to wikis_path
     else
-      notice = "error deleting"
+      flash[:error] = "error deleting"
       render :show
     end
 

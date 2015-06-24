@@ -25,3 +25,10 @@
           = f.input :body, input_html: {id: "wiki-input"}, as: :hidden
           #epiceditor
           = f.button :submit
+      = @wiki.collaborators.each do |c|
+        = link_to @users.find(c.user_id).name, c, method: :delete
+      = simple_form_for(@collaborator) do |f|
+        .form-group
+          =text_field_tag :user_name
+          =f.input :wiki_id, input_html: {value: @wiki.id}, as: :hidden
+          =f.button :submit 

@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   resources :wikis
 
+  resources :collaborators
+
   resources :users, only: [:update]
 
   get 'users/upgrade', to: 'users#upgrade', as: 'user_upgrade'
