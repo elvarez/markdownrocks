@@ -44,22 +44,32 @@ $(document).ready(function() {
 })
 </script>
 
-<%= simple_form_for(current_user, url: user_upgrade_path, html: { id: "upgrade_user" }) do |f| %>
-  <%= f.input :role, :collection => ["standard", "premium"] %>
 
-<%= f.hidden_field :stripe_card_token %>
+<% if current_user.stripe_customer_token.present? && current_user.premium? == false %>
 
-<% if current_user.stripe_customer_token.present? %>
-
+  <%= simple_form_for(current_user, url: user_regrade_path, html: { id: "regrade_user" }) do |f| %>
   Credit card has been provided.
+  <%= f.submit "Re-upgrade your account" %>
+  <% end %>
+  
+<% elsif current_user.premium? %>  
+
+  <%= simple_form_for(current_user, url: user_downgrade_path, html: { id: "downgrade_user" }) do |f| %>
+  <%= f.submit "Downgrade your account" %>
+  <% end %>
 
 <% else %>
+
+<%= simple_form_for(current_user, url: user_upgrade_path, html: { id: "upgrade_user" }) do |f| %>
+  <%= f.input :role, :collection => ["standard", "premium"] %>
+  <%= f.hidden_field :stripe_card_token %>
+
   <div class="field">
     <%= label_tag :card_number, "Credit Card Number" %>
     <%= text_field_tag :card_number, nil, name: nil %>
   </div>
   <div class="field">
-    <%= label_tag :card_code, "Security Code on Card (CVV)" %>
+    <%= label_tag :card_code, "Security Code on Card (CVC)" %>
     <%= text_field_tag :card_code, nil, name: nil %>
   </div>
   <div class="field">
@@ -67,13 +77,14 @@ $(document).ready(function() {
     <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"} %>
     <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"} %>
   </div>
-<% end %>
 
 <div id="stripe_error">
   <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
 </div>
 
   <%= f.submit "Update" %>
+
+<% end %>
 <% end %>
 
 

@@ -7,10 +7,10 @@ Rails.application.routes.draw do
 
   resources :collaborators
 
-  resources :users, only: [:update]
-
-  get 'users/upgrade', to: 'users#upgrade', as: 'user_upgrade'
-
+  patch 'users/downgrade', to: 'users#downgrade', as: 'user_downgrade'
+  patch 'users/regrade', to: 'users#regrade', as: 'user_regrade'
+  
+  patch 'users/upgrade', to: 'users#update', as: 'user_upgrade'
   get 'users/upgradev'
   
 end

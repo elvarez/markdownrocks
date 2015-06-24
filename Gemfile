@@ -33,6 +33,9 @@ gem 'redcarpet'
 # Simple form
 gem 'simple_form'
 
+# pry
+gem 'pry-rails'
+
 # devise
 gem 'devise'
 
