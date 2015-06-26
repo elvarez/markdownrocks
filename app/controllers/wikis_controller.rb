@@ -28,6 +28,10 @@ class WikisController < ApplicationController
 
   def edit
     @users = User.all
+    @names = []
+    @users.each do |u|
+      @names << u.name
+    end
     @wiki = Wiki.find(params[:id])
     @collaborator = Collaborator.new
     authorize @wiki

@@ -1,7 +1,11 @@
 :javascript
   var ready;
   ready = function() {
-    var editor = new EpicEditor().load();   
+
+  $("#wiki-input").keyup(function(){
+  $("#markdown").html(marked($("#wiki-input").val()));
+  });
+
   };
 
   $(document).ready(ready);
@@ -21,7 +25,6 @@
           - if current_user.admin? || current_user.premium?
             = f.check_box :private
             private?
-          = f.label :body
           = f.input :body, input_html: {id: "wiki-input"}
-          #epiceditor
+          #markdown
           = f.button :submit

@@ -1,10 +1,26 @@
+%script{:type => "text/javascript",
+        :src  => "//code.jquery.com/jquery-1.10.2.js"}
+
+%script{:type => "text/javascript",
+        :src  => "//code.jquery.com/ui/1.11.4/jquery-ui.js"}
+
 :javascript
-  var ready;
-  ready = function() {
-    var editor = new EpicEditor().load();
-  };
-  $(document).ready(ready);
-  $(document).on('page:load', ready);
+
+  $(document).ready(function(){  
+  $("#wiki-input").keyup(function(){
+  $("#markdown").html(marked($("#wiki-input").val()));
+  });
+
+  $(function() {
+  var availableTags = #{@names};
+    $( "#user_name" ).autocomplete({
+      source: availableTags
+    });  
+  });
+
+  
+  });
+
 
 %h1
   
@@ -20,9 +36,8 @@
           - if current_user.admin? || @wiki.user == current_user && current_user.premium?
             = f.check_box :private
             private?
-          = f.label :body
-          = f.input :body, input_html: {id: "wiki-input"}, as: :hidden
-          #epiceditor
+          = f.input :body, input_html: {id: "wiki-input"}
+          #markdown
           = f.button :submit
       - if current_user.admin? || @wiki.user == current_user && current_user.premium?
         = @wiki.collaborators.each do |c|
