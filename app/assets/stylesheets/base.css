@@ -53,7 +53,6 @@
 	body {
 		background: #fff;
 		font: 14px/21px "Lato", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
-		color: #bbb;
 		-webkit-font-smoothing: antialiased; /* Fix for webkit rendering */
 		-webkit-text-size-adjust: 100%;
  }
@@ -62,7 +61,6 @@
 /* #Typography
 ================================================== */
 	h1, h2, h3, h4, h5, h6 {
-		color: #aaa;
 		font-family: "Lato", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
 		font-weight: normal; }
 	h1 a, h2 a, h3 a, h4 a, h5 a, h6 a { font-weight: inherit; }
@@ -230,15 +228,12 @@
 	.half-bottom { margin-bottom: 10px !important; }
 	.add-bottom { margin-bottom: 20px !important; }
 
-
 /* Sections
 ================================================== */
 /* Header */
 	#header {
-	    background:url('../images/header.jpg') top center no-repeat;
-	    background-size: cover;
-	    min-height: 680px;
 	    width:100%;
+	    background-color: #090E2D;
 	}
 
 	#header .logo {
@@ -246,23 +241,28 @@
 	}
 
 	#header nav {
-	    text-align:right;
-	    margin-top:2em;
+	    text-align:left;
 	}
+
+	#header nav ul {
+	    margin-bottom: 0;
+	    padding:0.5em 0 0.5em;
+	}
+	
 
 	#header nav ul li {
 	    display:inline-block;
 	}
 
 	#header nav ul li a {
-	    color:#fff;
+	    color: #fff;
 	    text-transform:uppercase;
 	    text-decoration:none;
 	    padding:0.75em 2em;
 	}
 
 	#header p {
-	color: #d5d5d5;
+	color: #fff;
 	font-size:1.33em;
 	line-height: 1.5;
 	text-shadow: 0 1px 2px rgba(0,0,0,.2);
@@ -273,225 +273,89 @@
 	    color: #fff;
 	}
 	
-	/* Benefits */
 
-	#benefits {
-	    padding: 4em 0 0;
+/* #Welcome
+================================================== */
+
+	#welcome h1 {
 	    text-align: center;
-	}
+	    }
 
-	#benefits h2 {
-	    color:#009be8;
-	    font-weight: 300;
-	}
-
-	#benefits p {
-	    color:#9d9d9d;
-	    font-size:1.2em;
-	}
-
-	/* Pricing */
-
-	#pricing {
-	    background:#009be8;
-	    padding:4em 0;
+	#welcome p {
 	    text-align: center;
-	}
-
-	#pricing h2 {
-	    color:#fff;
-	    font-weight:300;
-	    text-shadow: 0 1px 2px rgba(0,0,0,.2);
-	}
-
-	#pricing p {
-	    color:#fff;
-	    text-shadow: 0 1px 2px rgba(0,0,0,.2);
-	    font-size:1.2em;
-	}
-
-	.pricebox {
-	    background-color: #fff;
-	    -moz-box-shadow: 0 1px 3px rgba(0,0,0,.2);
-	    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,.2);
-	    box-shadow: 0 1px 3px rgba(0,0,0,.2);
-	    margin-top: 3em;
-	    height:400px;
-	    position: relative;
-	}
-
-	.pricebox.deal {
-	    margin-top: 2em;
-	    height:430px;
-	}
-
-	.pricebox header {
-	    background-color:#f1f1f1;
-	    -moz-box-shadow: 0 1px 3px rgba(0,0,0,.2);
-	    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,.2);
-	    box-shadow: 0 1px 3px rgba(0,0,0,.2);
-	    padding: 1em 0;
-	    margin-bottom: 2em;
-	}
-
-	.pricebox header h3 {
-	    color:#4d4d4d;
-	    font-size:1.4em;
-	    text-transform: uppercase;
-	    margin: 0;
-	    font-weight: 600;
-	}
-
-	.pricebox section button {
-	    background:#2ecc71;
-	    position:absolute;
-	    bottom:1em;
-	    width:90%;
-	    left:0;
-	    right:0;
-	    margin:0 auto;
-	    text-align: center;
-	}
-
-	.pricebox section button:hover {
-	    background:#1fae5c;
-	}
-
-	.pricebox section h4 {
-	    display: inline-block;
-	    color:#009be8;
-	    font-size: 6em;
-	    font-weight: 900;
-	    vertical-align: bottom;
-	}
-
-	.pricebox section h4 span {
-	    font-size: 0.5em;
-	    line-height: 1;
-	    vertical-align: top;
-	}
-
-	.pricebox section p {
-	    display:inline-block;
-	    color:#9d9d9d;
-	    text-shadow:none;
-	    line-height: 1;
-	    position:relative;
-	    top:1em;
-	    font-size:1.1em;
-	}
-
-	.pricebox section ul {
-	    margin-top:3em;
 	    }
 
-	.pricebox section ul li {
-	    font-size:1.2em;
-	    margin-bottom: 1.2em;
+/* #User forms
+================================================== */
+
+	#separator {
+	    border-bottom: 1px solid #aaa;
 	    }
 
-	/* Testimonials */
+/* #Tables
+================================================== */
+	
+table {
+  border: 0;
+  border-spacing: 0;
+  margin: 10px 0;
+  width: 100%;
+}
 
-	#testimonials {
-	    padding: 4em 0;
-	    text-align: center;
+
+table tr th {
+  background: #757575;
+  background: rgba(0, 0, 0, 0.51);
+  border-bottom: 1px solid #aaa;
+}
+
+table tr a {
+  text-decoration: none;
+  font-weight: bold;
+  }
+
+
+table tbody tr th {
+  vertical-align: top;
+}
+
+tr td,
+tr th {
+  padding: 4px 9px;
+  border-bottom: 1px solid #aaa;
+  text-align: left; /* LTR */
+}
+
+/* #Wikishow
+================================================== */
+
+#wikishow {
+    text-align: right;
+    }
+
+	#wikishow {
+	    width:100%;
 	}
 
-	#testimonials h2 {
-	    color: #009be8;
-	    font-weight: 300;
-	    }
-
-	#testimonials p {
-	    color: #9d9d9d;
-	    font-size:1.2em;
-	    }
-
-	#testimonials blockquote {
-	    border: none;
-	    text-align: left;
-	    padding: 0 1.5em 0 0;
-	    font-size:1em;
-	    color:#4d4d4d;
-	    line-height: 1.4;
-	    margin-top: 1em;
-	    }
-
-	#testimonials .avatar img {
-	    border-radius: 50%;
+	#wikishow .left{
 	    float:left;
-	    display:inline;
-	    margin-right: 1em;
-	    width:65px;
-	    height:65px;
-	    }
+	}
+	
 
-	#testimonials .avatar p {
-	    text-align: left;
-	    padding-top: 1.5em;
-	    color:#5d5d5d;
-	    font-weight: 900;
-	    }
-
-/* action */
-
-	#action {
-	    background:url('../images/action.jpg') top center no-repeat;
-	    background-size: cover;
-	    min-height: 180px;
-	    width: 100%;
-	    padding: 4em 0;
-	    text-align: center;
+	#wikishow nav {
+	    text-align:right;
 	}
 
-	#action h2 { 
-	    color:#fff;
-	    font-weight:300;
-	    text-shadow: 0 1px 2px rgba(0,0,0,.2);
+	#wikishow nav ul {
+	    margin-bottom: 0;
+	}
+	
+	#wikishow nav ul li {
+	    display:inline-block;
 	}
 
-	#action p {
-	    color:#fff;
-	    text-shadow: 0 1px 2px rgba(0,0,0,.2);
-	    font-size:1.2em;
-	}
-
-	#action .row {
-	    margin-top: 3em;
-	    }
-
-/* footer */
-
-	#footer {
-	    background:#009be8;
-	    padding: 1em 0;
-	    }
-
-	#footer nav ul {
-	    margin-top: 0.5em;
-	    }
-
-	#footer nav ul li {
-	    display: inline;
-	    margin:0;
-	    }
-
-	#footer nav ul li a {
-	    color:#fff;
+	#wikishow nav ul li a {
+	    text-transform:uppercase;
 	    text-decoration:none;
-	    text-trasnform:uppercase;
-	    margin: 0  1em 0 0;
-	    font-size:1.1em;
-	    }
-
-	#footer img {
-	    float:right;
-	    }
-
-	#footer p {
-	    color:#fff;
-	    line-height: 1;
-	    text-transform: uppercase;
-	    font-size: 0.7em;
-	    margin-top: 0.5em;
-	    }
+	    padding:0.75em 2em;
+	}

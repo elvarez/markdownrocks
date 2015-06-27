@@ -11,6 +11,21 @@
   $("#markdown").html(marked($("#wiki-input").val()));
   });
 
+  $("#showpreview").click(function(){
+  $("#wikiform").toggleClass("fifteen eight");
+  $("#markdown").show();
+  $("#showpreview").hide();
+  $("#hidepreview").show();
+  });
+  
+  $("#hidepreview").click(function(){
+  $("#wikiform").toggleClass("fifteen eight");
+  $("#markdown").css( "display", "none" );
+  $("#showpreview").show();
+  $("#hidepreview").hide(); 
+  });
+  
+  
   $(function() {
   var availableTags = #{@names};
     $( "#user_name" ).autocomplete({
@@ -28,7 +43,7 @@
 
 %div{:class => "container"}
   %div{:class => "sixteen columns"}
-  %div{:class => "six columns offset-by-five"}
+  %div{:class => "fifteen columns", :id => "wikiform"}
     .newiki
       = simple_form_for(@wiki) do |f|
         .form-group
@@ -37,13 +52,23 @@
             = f.check_box :private
             private?
           = f.input :body, input_html: {id: "wiki-input"}
-          #markdown
           = f.button :submit
-      - if current_user.admin? || @wiki.user == current_user && current_user.premium?
-        = @wiki.collaborators.each do |c|
-          = link_to @users.find(c.user_id).name, c, method: :delete
-        = simple_form_for(@collaborator) do |f|
-          .form-group
-            =text_field_tag :user_name
-            =f.input :wiki_id, input_html: {value: @wiki.id}, as: :hidden
-            =f.button :submit 
+          %button{:type => "button", :id => "showpreview"}
+            Show preview
+          %button{:type => "button", :id => "hidepreview", :style => "display: none"}
+            Hide preview
+          #separator{:style => "height: 1em"}
+          %h4
+            Collaborators
+          %ul
+            - if current_user.admin? || @wiki.user == current_user && current_user.premium?
+              - @wiki.collaborators.each do |c|
+                %li
+                  = @users.find(c.user_id).name
+                  = link_to "(remove)", c, method: :delete
+      = simple_form_for(@collaborator) do |f|
+        .form-group
+          =text_field_tag :user_name
+          =f.input :wiki_id, input_html: {value: @wiki.id}, as: :hidden
+          =f.button :submit
+  %div{:class => "eight columns", :id => "markdown", :style => "display: none"}

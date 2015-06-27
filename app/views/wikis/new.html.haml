@@ -6,6 +6,20 @@
   $("#markdown").html(marked($("#wiki-input").val()));
   });
 
+  $("#showpreview").click(function(){
+  $("#wikiform").toggleClass("fifteen eight");
+  $("#markdown").show();
+  $("#showpreview").hide();
+  $("#hidepreview").show();
+  });
+  
+  $("#hidepreview").click(function(){
+  $("#wikiform").toggleClass("fifteen eight");
+  $("#markdown").css( "display", "none" );
+  $("#showpreview").show();
+  $("#hidepreview").hide(); 
+  });
+  
   };
 
   $(document).ready(ready);
@@ -17,7 +31,7 @@
 
 %div{:class => "container"}
   %div{:class => "sixteen columns"}
-  %div{:class => "six columns offset-by-five"}
+  %div{:class => "fifteen columns", :id => "wikiform"}
     .newiki
       = simple_form_for(@wiki) do |f|
         .form-group
@@ -26,5 +40,9 @@
             = f.check_box :private
             private?
           = f.input :body, input_html: {id: "wiki-input"}
-          #markdown
           = f.button :submit
+          %button{:type => "button", :id => "showpreview"}
+            Show preview
+          %button{:type => "button", :id => "hidepreview", :style => "display: none"}
+            Hide preview
+  %div{:class => "eight columns", :id => "markdown", :style => "display: none"}

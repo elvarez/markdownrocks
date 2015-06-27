@@ -1,3 +1,16 @@
-%h1
-  = markdown @wiki.title
-= markdown @wiki.body
+#wikishow
+  %nav
+    %ul
+      %li.left
+        %h1
+          = markdown @wiki.title
+      - if policy(@wiki).edit?
+        %li      
+          = link_to "edit", controller: "wikis", action: "edit", id: @wiki
+      - if policy(@wiki).destroy?
+        %li
+          = link_to "delete", @wiki, method: :delete
+
+%div{:style => "padding-top: 4em"}
+  = markdown @wiki.body
+

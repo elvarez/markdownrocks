@@ -1,5 +1,5 @@
 %h1
-  My wikis
+  Wikis
 
 %table
   %tbody
@@ -7,13 +7,7 @@
       %tr
         %td
           = link_to (markdown wiki.title), controller: "wikis", action: "show", id: wiki
-        %td
-          - if policy(wiki).edit?
-            = link_to "edit", controller: "wikis", action: "edit", id: wiki
-        %td
-          - if policy(wiki).destroy?
-            = link_to "delete", wiki, method: :delete
-
 
 %p
-  = link_to "New", new_wiki_path
+  = button_to "New Wiki", new_wiki_path, method: :get
+
